@@ -1,0 +1,13 @@
+name: ResNatSeed_ShinyApp
+title: ResNatSeed_ShinyApp
+username:
+account: marco-pittarello
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5927573
+bundleId: 5723081
+url: https://marco-pittarello.shinyapps.io/ResNatSeed_ShinyApp/
+when: 1648140724.18904
+lastSyncTime: 1648140724.18904
+asMultiple: FALSE
+asStatic: FALSE
