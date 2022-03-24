@@ -12,11 +12,12 @@ library(shinythemes)
 library(vegan)
 library(tidyverse)
 
+#library(devtools)
+#install_github("MarcoPittarello/ResNatSeed")
+
 library(ResNatSeed)
 
 
-#install.packages('rsconnect')
-#rsconnect::setAccountInfo(name='marco-pittarello', token='597E84CE5CC18F11E063F82C92A9A105', secret='j2uJO/bWQBYyKs+WLSqKYS45LtMdt/2MeU7TZd8W')
 
 # ^^^^^ UI - shiny app ------------------------------------------
 ui <- fluidPage(
