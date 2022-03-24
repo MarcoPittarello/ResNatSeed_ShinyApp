@@ -21,7 +21,7 @@ library(ResNatSeed)
 
 # ^^^^^ UI - shiny app ------------------------------------------
 ui <- fluidPage(
-  titlePanel("ResNatSeed: a tool for bla bla bla blaalalalalal"),
+  titlePanel("ResNatSeed: A tool for the assessment of the REStoration potential of NATive SEEDs based on topographic factors"),
   theme = shinytheme("cosmo"),
   navbarPage("ResNatSeed",
              
@@ -98,9 +98,9 @@ ui <- fluidPage(
                       br(),
              ),
              
-             # 3 - APP ----           
+             # 3 - WEB APP ----           
              
-             tabPanel("App",
+             tabPanel("Web App",
                       fluidRow(
                         # SIDE BAR PANEL -------------------------------
                         column(4,
@@ -228,7 +228,49 @@ ui <- fluidPage(
                       )#fluid page
              ),#tab panel 1
              
-             # 4 - CONTACTS ----           
+             # 4 - APP in R Studio ----           
+             
+             tabPanel("App in R studio",
+                      h1(strong("Internet connection needed")),
+                      br(),
+                      fluidRow(
+                        column(5,
+                               p("In R Studio run the following code:"),
+                               p(code("install.packages('shiny')"),
+                                 br(),
+                                 code("library(shiny)"),
+                                 br(),
+                                 code("runGitHub('ResNatSeed_ShinyApp','MarcoPittarello')"),
+                                 style="text-align:left;
+                           color:black;
+                           background-color:grey90;
+                           padding:5px;
+                           border-radius:2px"
+                               )#paragraph
+                        )#end column
+                      ),#end fluid row
+                      h1(strong("Internet connection NOT needed")),
+                      br(),
+                      fluidRow(
+                        column(9,
+                               p("The internet connection is not needed except for the 
+                                 first two steps, which however are required only once to download locally the app."),
+                               p("The steps are:"),
+                               p("1 - go", a(href="https://github.com/MarcoPittarello/ResNatSeed_ShinyApp", "here"),
+                                 br(),
+                                 "2 - click on 'CODE' (green button) and then 'DOWNLOAD ZIP' file, named ‘ResNatSeed_ShinyApp-master’",
+                                 br(),
+                                 "3 - unzip the downloaded file (from now on, it will no longer be necessary to have an internet connection)",
+                                 br(),
+                                 "4 - open the unzipped folder and click on ‘app.R’, R studio will open",
+                                 br(),
+                                 "5 – click ‘Run App’ on the right-upper corner of source panel and enjoy the App!!"
+                               )#end paragraph
+                               )#end column
+                      )#end fluidrow
+                      ),#tabpanel
+             
+             # 5 - CONTACTS ----           
              
              tabPanel("Contacts",
                       h1("Lista contatti"),
