@@ -193,9 +193,19 @@ ui <- fluidPage(
                                                            tableOutput("descrittive"),
                                                            h4(strong("Surveyed and predicted abundance")),
                                                            tableOutput("valori_predetti"),
+                                                           plotOutput("barplot",width = 800,height = 350),
                                                            h4(strong("Indexes")),
-                                                           tableOutput("indici"),
-                                                           plotOutput("plot",width = 500,height = 500))
+                                                           fluidRow(
+                                                             column(2,
+                                                                    tableOutput("indici"),
+                                                                    ),
+                                                             column(4,
+                                                                    plotOutput("plot",width = 350,height = 400)
+                                                                  )
+                                                           
+                                                           )#end fluid row
+                                                  )#end tab panel
+                                                           
                                                 )#tabset panel
                                ),#conditional panel
                                ## question 1 = custom -------
@@ -217,9 +227,17 @@ ui <- fluidPage(
                                                            tableOutput("descrittive1"),
                                                            h4(strong("Surveyed and predicted abundance")),
                                                            tableOutput("valori_predetti1"),
+                                                           plotOutput("barplot1",width = 800,height = 350),
                                                            h4(strong("Indexes")),
-                                                           tableOutput("indici1"),
-                                                           plotOutput("plot1",width = 500,height = 500)
+                                                           fluidRow(
+                                                             column(2,
+                                                                    tableOutput("indici1"),
+                                                             ),
+                                                             column(4,
+                                                                    plotOutput("plot1",width = 350,height = 400)
+                                                             )
+                                                             
+                                                           )#end fluid row
                                                   )#tabpanel        
                                                 )#tabset panel
                                )#conditional panel
@@ -396,7 +414,32 @@ server <- function(input, output, session) {
     ggarrange(grafico1, grafico2,ncol = 2, nrow = 1)
   })
   
-  
+  output$barplot<-renderPlot({
+    
+    db.barplot<-output.funzione()$valori_predetti
+    sel<-db.barplot[,c(1,8,9)]
+    sel<-sel[complete.cases(sel), ] 
+    
+    sel %>% pivot_longer(cols = 2:3,names_to = "mix.exp",values_to = "abundance") %>% 
+      ggplot(.,aes(x=as.factor(cep.names),y=abundance,fill=mix.exp)) +
+      geom_col(position=position_identity(),color="black")+
+      theme(axis.title.x=element_blank(),
+            axis.text.x=element_text(color="grey10",size=12,angle = 0),
+            axis.ticks.x=element_blank(),
+            panel.background = element_rect(fill = "white",colour = "lightblue",
+                                            size = 0.5, linetype = "solid"),
+            panel.grid.major.y  = element_line(colour="black",size = rel(0.5),linetype = "dotted"),
+            panel.grid.minor.y = element_blank(),
+            panel.grid.major.x = element_blank(),
+            panel.grid.minor.x = element_blank(),
+            panel.border = element_rect(colour = "black", fill=NA, size=1),
+            axis.text.y = element_text(color="black", size=12, angle=0),
+            axis.title.y = element_text(color="black", size=16, angle=90),
+            legend.position = "bottom")+
+      scale_fill_manual(values = c( "darkgreen", "darkolivegreen1"),
+                        labels=c("EXPECTED ABUNDANCE", "MIXTURE ABUNDANCE"))+
+      labs(fill = "")
+  }) 
   
   # question 1 = custom ----
   # side bar panel --------------------------------------
@@ -496,7 +539,7 @@ server <- function(input, output, session) {
     grafico1a<-ggplot(db1,aes(y=db1[1,1],x=1))+geom_bar(stat = "identity",width = 4,color="black",fill="red")+
       expand_limits(y = c(0, 1))+
       scale_y_continuous(breaks = seq(from = 0, to = 1, by = 0.05))+
-      ylab("Mixture suitability index")+
+      ylab("Mixture Suitability index")+
       theme(axis.title.x=element_blank(),
             axis.text.x=element_blank(),
             axis.ticks.x=element_blank(),
@@ -513,7 +556,7 @@ server <- function(input, output, session) {
     grafico2a<-ggplot(db1,aes(y=db1[1,2],x=1))+geom_bar(stat = "identity",width = 4,color="black",fill="green")+
       expand_limits(y = c(0, 1))+
       scale_y_continuous(breaks = seq(from = 0, to = 1, by = 0.05))+
-      ylab("Model reliability index")+
+      ylab("Model Reliability index")+
       theme(axis.title.x=element_blank(),
             axis.text.x=element_blank(),
             axis.ticks.x=element_blank(),
@@ -530,6 +573,33 @@ server <- function(input, output, session) {
     
     ggarrange(grafico1a, grafico2a,ncol = 2, nrow = 1)
   })
+  
+  output$barplot1<-renderPlot({
+    
+    db.barplot1<-output.funzione1()$valori_predetti
+    sel1<-db.barplot1[,c(1,8,9)]
+    sel1<-sel1[complete.cases(sel1), ] 
+    
+    sel1 %>% pivot_longer(cols = 2:3,names_to = "mix.exp",values_to = "abundance") %>% 
+      ggplot(.,aes(x=as.factor(cep.names),y=abundance,fill=mix.exp)) +
+      geom_col(position=position_identity(),color="black")+
+      theme(axis.title.x=element_blank(),
+            axis.text.x=element_text(color="grey10",size=12,angle = 0),
+            axis.ticks.x=element_blank(),
+            panel.background = element_rect(fill = "white",colour = "lightblue",
+                                            size = 0.5, linetype = "solid"),
+            panel.grid.major.y  = element_line(colour="black",size = rel(0.5),linetype = "dotted"),
+            panel.grid.minor.y = element_blank(),
+            panel.grid.major.x = element_blank(),
+            panel.grid.minor.x = element_blank(),
+            panel.border = element_rect(colour = "black", fill=NA, size=1),
+            axis.text.y = element_text(color="black", size=12, angle=0),
+            axis.title.y = element_text(color="black", size=16, angle=90),
+            legend.position = "bottom")+
+      scale_fill_manual(values = c( "darkgreen", "darkolivegreen1"),
+                        labels=c("EXPECTED ABUNDANCE", "MIXTURE ABUNDANCE"))+
+      labs(fill = "")
+  }) 
 }
 
 shinyApp(ui, server)
