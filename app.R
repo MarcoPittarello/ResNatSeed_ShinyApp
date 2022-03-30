@@ -57,12 +57,12 @@ ui <- fluidPage(
              tabPanel("Instructions",
                       fluidRow(
                         h1(strong("Step 1")),
-                        p("papapdspdspadpsadpsadpasdpasd"),
+                        p("Due opzioni: default / custom"),
                         column(6,
                                img(src = "step1.PNG", height = 150, width = 600)
                         ),
                         column(5,
-                               p("clicca li e divertiti a manetta",
+                               p("clicca li, guarda la, etc",
                                  style="text-align:center;
                                          color:black;
                                          background-color:chartreuse;
@@ -79,7 +79,7 @@ ui <- fluidPage(
                                img(src = "step1.PNG", height = 150, width = 600)
                         ),
                         column(4,
-                               p("clicca li e divertiti a manetta")
+                               p("Due opzioni: default / custom")
                         )
                       ),
                       tags$hr(),
@@ -91,7 +91,7 @@ ui <- fluidPage(
                                img(src = "step1.PNG", height = 150, width = 600)
                         ),
                         column(4,
-                               p("clicca li e divertiti a manetta")
+                               p("Due opzioni: default / custom")
                         )
                       ),
                       tags$hr(),
@@ -117,7 +117,7 @@ ui <- fluidPage(
                                    downloadButton("PiemonteCodes", "Download"),
                                    tags$hr(),
                                    h4(strong("3 - Upload mixture/donor grassland composition")),
-                                   fileInput("uploadMiscela", "Choose CSV File",
+                                   fileInput("uploadMiscela", "CSV File (semicolon separated)",
                                              accept = c(
                                                "text/csv",
                                                "text/comma-separated-values,text/plain",
@@ -139,7 +139,7 @@ ui <- fluidPage(
                                  conditionalPanel(
                                    condition = "input.radio == 'custom'",
                                    h4(strong("2 - Upload customised training database")),
-                                   fileInput("uploadDB", "Choose CSV File",
+                                   fileInput("uploadDB", "CSV File (semicolon separated)",
                                              accept = c(
                                                "text/csv",
                                                "text/comma-separated-values,text/plain",
@@ -159,7 +159,7 @@ ui <- fluidPage(
                                    downloadButton("OwnSpeCodes", "Download"),
                                    tags$hr(),
                                    h4(strong("6 - Upload mixture/donor grassland composition")),
-                                   fileInput("uploadMiscela1", "Choose CSV File",
+                                   fileInput("uploadMiscela1", "CSV File (semicolon separated)",
                                              accept = c(
                                                "text/csv",
                                                "text/comma-separated-values,text/plain",
