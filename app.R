@@ -53,50 +53,133 @@ ui <- fluidPage(
              ),#end tabpanel
              
              # 2 - INSTRUCTIONS----           
-             
              tabPanel("Instructions",
                       fluidRow(
-                        h1(strong("Step 1")),
-                        p("Due opzioni: default / custom"),
-                        column(6,
-                               img(src = "step1.PNG", height = 150, width = 600)
-                        ),
-                        column(5,
-                               p("clicca li, guarda la, etc",
-                                 style="text-align:center;
-                                         color:black;
-                                         background-color:chartreuse;
-                                         padding:15px;
-                                         border-radius:10px")
-                        )
-                      ),
-                      tags$hr(),
-                      br(),
-                      fluidRow(
-                        h1("Step 2"),
-                        p("papapdspdspadpsadpsadpasdpasd"),
-                        column(6,
-                               img(src = "step1.PNG", height = 150, width = 600)
-                        ),
-                        column(4,
-                               p("Due opzioni: default / custom")
-                        )
-                      ),
-                      tags$hr(),
-                      br(),
-                      fluidRow(
-                        h1("Step 3"),
-                        p("papapdspdspadpsadpsadpasdpasd"),
-                        column(6,
-                               img(src = "step1.PNG", height = 150, width = 600)
-                        ),
-                        column(4,
-                               p("Due opzioni: default / custom")
-                        )
-                      ),
-                      tags$hr(),
-                      br(),
-             ),
+                        tabsetPanel(
+                          type="tabs",
+                          tabPanel("Glossary",
+                                   h5(strong("restoration site:"),p("degraded site that needs to be restored through sowing")),
+                                   h5(strong("donor grassland:"),p("grassland in which plant material is harvested (e.g. through brushing) to provide native seeds to restoration sites")),
+                                   h5(strong("vegetation and topographical variables database:"),p("dataframe containing the composition of a set of vegetation surveys and their corresponding topographic variables (elevation, slope and aspect)")),
+                                   h5(strong("training database:"),p("dataframe with the species eligible for the statistical modelling, selected on the basis of their frequency and abundance in the vegetation and topographical variables database. Each species is associated with the values of topographic variables (elevation, slope and aspect) and its abundance.")),
+                                   h5(strong("species codes - CEP names:"),p("an eight-letter abbreviation of species names according to the Cornell Ecology Programs (CEP)")),
+                                   h5(strong("seed mixture and donor grassland composition:"),p("The 'seed mixture' is the list of the species and their abundance in the seed batch. The 'donor grassland composition' is the list of the species and their abundance surveyed in a grassland where native seeds are harvested.")),
+                                   h5(strong("topographical variables of the restoration site:"),p("values of the elevation, slope, and aspect of a degraded site that needs to be restored through sowing.")),
+                                   h5(strong("Suitability Index (SI):"),p("suitability of a seed mixture or donor grassland to restore a site with specific topographic characteristics. It ranges between 0 and 1. When SI=0 the restoration site is totally beyond the optimal ecological ranges of all species of the seed mixture or donor grassland, which is therefore not appropriate for the site restoration. Conversely, when SI=1 the restoration site has the optimal ecological conditions for all species of the seed mixture or donor grassland, which is therefore perfectly appropriate for the site restoration.")),
+                                   h5(strong("Reliability Index (RI):"),p("index of the reliability of the Suitability Index (SI). The RI ranges between 0 and 1. When RI is close to 0 it means that few to none species contribute to the computation of the SI, whereas when RI is close to 1 the SI is computed with most to all species. Therefore, the higher is the RI, the most reliable is the SI. Not all the species of the seed mixture and donor grassland composition may modeled as i) they can be missing from the training database or ii) the values of the topographic factors of the restoration site are beyond their ecological ranges (e.g. if the elevation of the restoration site is 250 m and a species as an elevation range bounded between 1000 and 3000 m, such a species cannot be modeled)"))
+                                   ),
+                          tabPanel("How to use ResNatSeed",
+                                   p("ResNatSeed can operate in two different ways depending on the source of the training database (i.e. the default or customized one):"),
+                                   p("The",strong("DEFAULT training database"),"is based on vegetation data collected in the Piedmont Region (North Western Italy). See the vignette",strong("TUTORIAL 1 - Default training database"),"for operational details."),
+                                   p("The",strong("CUSTOMIZED training database"),"is based on vegetation data collected in the Piedmont Region (North Western Italy). See the vignette",strong("TUTORIAL 2 - Customized training database"),"for operational details.")
+                                   ),#end tabpanel
+                          tabPanel("Tutorial 1: DEFAULT training database",
+                                   fluidRow(
+                                     h3(strong("Step 1")),
+                                     column(4,
+                                            img(src = "step1.PNG", height = 150, width = 350)
+                                     ),
+                                     column(8,
+                                            p("Select the 'WebApp' panel",
+                                              style="text-align:left;
+                                            color:black;
+                                            background-color:white;
+                                            padding:15px;
+                                            border-radius:10px")
+                                     )#end column
+                                     ),#end fluid row
+                                   tags$hr(),
+                                   br(),
+                                   fluidRow(
+                                     h3(strong("Step 2")),
+                                     column(6,
+                                            img(src = "step1.PNG", height = 150, width = 600)
+                                            ),
+                                     column(5,
+                                            p("Select 'Default (Piedmont, Italy)'"),
+                                            p("When this setting is the default one, the training database refers to the vegetation surveys from the Piedmont Region - North-Western Italy, which includes 258 plant species eligible to modeling")
+                                            )
+                                     ),
+                                   tags$hr(),
+                                   br(),
+                                   fluidRow(
+                                     h3(strong("Step 3")),
+                                     column(6,
+                                            img(src = "step1.PNG", height = 150, width = 600)
+                                     ),
+                                     column(5,
+                                            p("Click in the Download button to download a 'csv' file with the training database"),
+                                            p("The species names follow the Flora Alpina nomenclature (Aeschimann et al.,2004) and they are associated with the 'cep.names' code.")
+                                     )
+                                   ),
+                                   tags$hr(),
+                                   br(),
+                                   fluidRow(
+                                     h3(strong("Step 4")),
+                                     column(6,
+                                            img(src = "step1.PNG", height = 150, width = 600)
+                                     ),
+                                     column(5,
+                                            p("In a excel sheet create the mixture or donor grassland composition database, which is characterized by two columns:"),
+                                            p(strong("First column:"),"species code abbreviated in CEP names format"),
+                                            p(strong("Second column:"),"abundance of each species. Abundance must be a number bounded between 0 and 100, which can be either a species relative abundance or a species cover (sensu Pittarello et al., 2016; Verdinelli et al., 2022"),
+                                            p("The total abundance of the seed mixture or donor grassland composition should not necessarily amount 100%.")
+                                     )
+                                   ),
+                                   tags$hr(),
+                                   br(),
+                          ),#end tabpanel
+                          tabPanel("Tutorial 2: CUSTOMIZED training database",
+                                   
+                          )#end tabpanel
+                        )#end tabset panel
+                      )#end fluid row
+                      ),#end tabpanel
+             
+             # tabPanel("Instructions",
+             #          fluidRow(
+             #            h1(strong("Step 1")),
+             #            p("Due opzioni: default / custom"),
+             #            column(6,
+             #                   img(src = "step1.PNG", height = 150, width = 600)
+             #            ),
+             #            column(5,
+             #                   p("clicca li, guarda la, etc",
+             #                     style="text-align:center;
+             #                             color:black;
+             #                             background-color:chartreuse;
+             #                             padding:15px;
+             #                             border-radius:10px")
+             #            )
+             #          ),
+             #          tags$hr(),
+             #          br(),
+             #          fluidRow(
+             #            h1("Step 2"),
+             #            p("papapdspdspadpsadpsadpasdpasd"),
+             #            column(6,
+             #                   img(src = "step1.PNG", height = 150, width = 600)
+             #            ),
+             #            column(4,
+             #                   p("Due opzioni: default / custom")
+             #            )
+             #          ),
+             #          tags$hr(),
+             #          br(),
+             #          fluidRow(
+             #            h1("Step 3"),
+             #            p("papapdspdspadpsadpsadpasdpasd"),
+             #            column(6,
+             #                   img(src = "step1.PNG", height = 150, width = 600)
+             #            ),
+             #            column(4,
+             #                   p("Due opzioni: default / custom")
+             #            )
+             #          ),
+             #          tags$hr(),
+             #          br(),
+             # ),
+             # 
              
              # 3 - WEB APP ----           
              
@@ -116,7 +199,7 @@ ui <- fluidPage(
                                    h4(strong("2 - Download species codes (CEP names)")),
                                    downloadButton("PiemonteCodes", "Download"),
                                    tags$hr(),
-                                   h4(strong("3 - Upload mixture/donor grassland composition")),
+                                   h4(strong("3 - Upload Seed mixture or donor grassland composition")),
                                    fileInput("uploadMiscela", "CSV File (semicolon separated)",
                                              accept = c(
                                                "text/csv",
@@ -138,7 +221,7 @@ ui <- fluidPage(
                                  ## question 1 = custom -------
                                  conditionalPanel(
                                    condition = "input.radio == 'custom'",
-                                   h4(strong("2 - Upload customised training database")),
+                                   h4(strong("2 - Upload customized training database")),
                                    fileInput("uploadDB", "CSV File (semicolon separated)",
                                              accept = c(
                                                "text/csv",
@@ -158,7 +241,7 @@ ui <- fluidPage(
                                    h4(strong("5 - Download species codes (CEP names)")),
                                    downloadButton("OwnSpeCodes", "Download"),
                                    tags$hr(),
-                                   h4(strong("6 - Upload mixture/donor grassland composition")),
+                                   h4(strong("6 - Upload Seed mixture or donor grassland composition")),
                                    fileInput("uploadMiscela1", "CSV File (semicolon separated)",
                                              accept = c(
                                                "text/csv",
@@ -185,13 +268,13 @@ ui <- fluidPage(
                                                 tabsetPanel(
                                                   type="tabs",
                                                   tabPanel("Data preview",
-                                                           h4(strong("Mixture/donor grassland composition")),
+                                                           h4(strong("Seed mixture or donor grassland composition")),
                                                            tableOutput("mixture_input")
                                                   ),
                                                   tabPanel("Analysis output",
                                                            h4(strong("Descriptives")),
                                                            tableOutput("descrittive"),
-                                                           h4(strong("Surveyed and predicted abundance")),
+                                                           h4(strong("Species abundances")),
                                                            tableOutput("valori_predetti"),
                                                            plotOutput("barplot",width = 800,height = 350),
                                                            h4(strong("Indexes")),
@@ -204,7 +287,32 @@ ui <- fluidPage(
                                                                   )
                                                            
                                                            )#end fluid row
-                                                  )#end tab panel
+                                                  ),#end tab panel
+                                                  tabPanel("Output glossary",
+                                                           h4(strong("Descriptives")),
+                                                           h6(strong("cep.names:"),p("Species name in CEP format")),
+                                                           h6(strong("species:"),p("Full species name")),
+                                                           h6(strong("n.obs:"),p("Number of observations of each species selected for modeling")),
+                                                           h6(strong("min.ele:"),p("Minimum elevation at which a species occurred")),
+                                                           h6(strong("max.ele:"),p("Maximum elevation at which a species occurred")),
+                                                           h6(strong("min.slope:"),p("Minimum slope at which a species occurred")),
+                                                           h6(strong("max.slope:"),p("Maximum slope at which a species occurred")),
+                                                           h6(strong("min.south:"),p("Minimum southness value at which a species occurred")),
+                                                           h6(strong("max.south:"),p("Maximum southness value at which a species occurred")),
+                                                           
+                                                           h4(strong("Species abundances")),
+                                                           h6(strong("PMA:"),p("Predicted Maximum Abundance. It is the maximum achievable abundance of a species in the restoration site, as predicted by the best model")),
+                                                           h6(strong("POA:"),p("Predicted Optimal Abundace. It is the maximum achievable abundance of a species in its optimal ecological condition, based on all possible combinations of elevation, slope and southness.")),
+                                                           h6(strong("ratio:"),p("Ratio between the PMA and POA. This ratio indicates how far (ratio = 0) or close (ratio = 1) a species is from its ecological optimum.")),
+                                                           h6(strong("R2.adj:"),p("R square adjusted of the best Generalized Additive Model")),
+                                                           h6(strong("RMSE:"),p("Root Mean Squared Error of the best Generalized Additive Model")),
+                                                           h6(strong("SmDgA:"),p("Seed mixture or Donor grassland Abundance. Abundance of a species listed in the seed mixture or donor grassland composition imported by the user and eligible for modeling")),
+                                                           h6(strong("EA:"),p("Expected Abundance. The highest achievable abundance of a species in a restoration site, based on how far the species is from the ecological optimum (i.e. computed from the multiplication of SmDgA by the ratio)")),
+                                                           
+                                                           h4(strong("Indexes")),
+                                                           h6(strong("SI:"),p("Suitability Index (SI). Suitability of a seed mixture or donor grassland to restore a site with specific topographic characteristics. It ranges between 0 and 1. When SI=0 the restoration site is totally beyond the optimal ecological ranges of all species of the seed mixture or donor grassland, which is therefore not appropriate for the site restoration. Conversely, when SI=1 the restoration site has the optimal ecological conditions for all species of the seed mixture or donor grassland, which is therefore perfectly appropriate for the site restoration.")),
+                                                           h6(strong("RI:"),p("Reliability Index (RI). Index of the reliability of the Suitability Index (SI). The RI ranges between 0 and 1. When RI is close to 0 it means that few to none species contribute to the computation of the SI, whereas when RI is close to 1 the SI is computed with most to all species. Therefore, the higher is the RI, the most reliable is the SI. Not all the species of the seed mixture and donor grassland composition may modeled as i) they can be missing from the training database or ii) the values of the topographic factors of the restoration site are beyond their ecological ranges (e.g. if the elevation of the restoration site is 250 m and a species as an elevation range bounded between 1000 and 3000 m, such a species cannot be modeled)"))
+                                                            ),#end tab panel
                                                            
                                                 )#tabset panel
                                ),#conditional panel
@@ -218,14 +326,14 @@ ui <- fluidPage(
                                                                   tableOutput("codici.anteprima")
                                                            ),
                                                            column(6,
-                                                                  h4(strong("Mixture/donor grassland composition")),
+                                                                  h4(strong("Seed mixture or donor grassland composition")),
                                                                   tableOutput("mixture_input1")
                                                            )
                                                   ),#tabpanel
                                                   tabPanel("Analysis output",
                                                            h4(strong("Descriptives")),
                                                            tableOutput("descrittive1"),
-                                                           h4(strong("Surveyed and predicted abundance")),
+                                                           h4(strong("Species abundances")),
                                                            tableOutput("valori_predetti1"),
                                                            plotOutput("barplot1",width = 800,height = 350),
                                                            h4(strong("Indexes")),
@@ -238,8 +346,33 @@ ui <- fluidPage(
                                                              )
                                                              
                                                            )#end fluid row
-                                                  )#tabpanel        
-                                                )#tabset panel
+                                                           ),#tabpanel
+                                                  tabPanel("Output glossary",
+                                                           h4(strong("Descriptives")),
+                                                           h6(strong("cep.names:"),p("Species name in CEP format")),
+                                                           h6(strong("species:"),p("Full species name")),
+                                                           h6(strong("n.obs:"),p("Number of observations of each species selected for modeling")),
+                                                           h6(strong("min.ele:"),p("Minimum elevation at which a species occurred")),
+                                                           h6(strong("max.ele:"),p("Maximum elevation at which a species occurred")),
+                                                           h6(strong("min.slope:"),p("Minimum slope at which a species occurred")),
+                                                           h6(strong("max.slope:"),p("Maximum slope at which a species occurred")),
+                                                           h6(strong("min.south:"),p("Minimum southness value at which a species occurred")),
+                                                           h6(strong("max.south:"),p("Maximum southness value at which a species occurred")),
+                                                           
+                                                           h4(strong("Species abundances")),
+                                                           h6(strong("PMA:"),p("Predicted Maximum Abundance. It is the maximum achievable abundance of a species in the restoration site, as predicted by the best model")),
+                                                           h6(strong("POA:"),p("Predicted Optimal Abundace. It is the maximum achievable abundance of a species in its optimal ecological condition, based on all possible combinations of elevation, slope and southness.")),
+                                                           h6(strong("ratio:"),p("Ratio between the PMA and POA. This ratio indicates how far (ratio = 0) or close (ratio = 1) a species is from its ecological optimum.")),
+                                                           h6(strong("R2.adj:"),p("R square adjusted of the best Generalized Additive Model")),
+                                                           h6(strong("RMSE:"),p("Root Mean Squared Error of the best Generalized Additive Model")),
+                                                           h6(strong("SmDgA:"),p("Seed mixture or Donor grassland Abundance. Abundance of a species listed in the seed mixture or donor grassland composition imported by the user and eligible for modeling")),
+                                                           h6(strong("EA:"),p("Expected Abundance. The highest achievable abundance of a species in a restoration site, based on how far the species is from the ecological optimum (i.e. computed from the multiplication of SmDgA by the ratio)")),
+                                                           
+                                                           h4(strong("Indexes")),
+                                                           h6(strong("SI:"),p("Suitability Index (SI). Suitability of a seed mixture or donor grassland to restore a site with specific topographic characteristics. It ranges between 0 and 1. When SI=0 the restoration site is totally beyond the optimal ecological ranges of all species of the seed mixture or donor grassland, which is therefore not appropriate for the site restoration. Conversely, when SI=1 the restoration site has the optimal ecological conditions for all species of the seed mixture or donor grassland, which is therefore perfectly appropriate for the site restoration.")),
+                                                           h6(strong("RI:"),p("Reliability Index (RI). Index of the reliability of the Suitability Index (SI). The RI ranges between 0 and 1. When RI is close to 0 it means that few to none species contribute to the computation of the SI, whereas when RI is close to 1 the SI is computed with most to all species. Therefore, the higher is the RI, the most reliable is the SI. Not all the species of the seed mixture and donor grassland composition may modeled as i) they can be missing from the training database or ii) the values of the topographic factors of the restoration site are beyond their ecological ranges (e.g. if the elevation of the restoration site is 250 m and a species as an elevation range bounded between 1000 and 3000 m, such a species cannot be modeled)"))
+                                                  )#end tab panel
+                                                  )#tabset panel
                                )#conditional panel
                                
                         )#column
@@ -338,7 +471,7 @@ server <- function(input, output, session) {
       Sys.sleep(0.5)
     }
     
-    ## 3 - Upload mixture/donor grassland composition
+    ## 3 - Upload Seed mixture or donor grassland composition
     inFile2 <- input$uploadMiscela
     composizione<-read.csv(inFile2$datapath, header = input$header,sep = ";")
     
@@ -350,7 +483,7 @@ server <- function(input, output, session) {
                slope = input$pendenza)
     
     descrittive<-a$DESCRIPTIVES
-    valori_predetti<-a$SURVEYED_AND_PREDICTED_ABUNDANCE
+    valori_predetti<-a$SPECIES_ABUNDANCES
     indici<-a$INDEXES
     
     plot<-data.frame(a$INDEXES)
@@ -377,10 +510,10 @@ server <- function(input, output, session) {
     
     db<-output.funzione()$plot
     
-    grafico1<-ggplot(db,aes(y=db[1,1],x=1))+geom_bar(stat = "identity",width = 4,color="black",fill="red")+
+    grafico1<-ggplot(db,aes(y=db[1,1],x=1))+geom_bar(stat = "identity",width = 4,color="black",fill="darkgreen")+
       expand_limits(y = c(0, 1))+
       scale_y_continuous(breaks = seq(from = 0, to = 1, by = 0.05))+
-      ylab("Mixture Suitability Index (MSI)")+
+      ylab("Suitability Index (SI)")+
       theme(axis.title.x=element_blank(),
             axis.text.x=element_blank(),
             axis.ticks.x=element_blank(),
@@ -394,10 +527,10 @@ server <- function(input, output, session) {
             axis.text.y = element_text(color="black", size=12, angle=0),
             axis.title.y = element_text(color="black", size=16, angle=90))
     
-    grafico2<-ggplot(db,aes(y=db[1,2],x=1))+geom_bar(stat = "identity",width = 4,color="black",fill="green")+
+    grafico2<-ggplot(db,aes(y=db[1,2],x=1))+geom_bar(stat = "identity",width = 4,color="black",fill="cyan3")+
       expand_limits(y = c(0, 1))+
       scale_y_continuous(breaks = seq(from = 0, to = 1, by = 0.05))+
-      ylab("Model Reliability Index (MRI)")+
+      ylab("Reliability Index (RI)")+
       theme(axis.title.x=element_blank(),
             axis.text.x=element_blank(),
             axis.ticks.x=element_blank(),
@@ -437,7 +570,7 @@ server <- function(input, output, session) {
             axis.title.y = element_text(color="black", size=16, angle=90),
             legend.position = "bottom")+
       scale_fill_manual(values = c( "darkgreen", "darkolivegreen1"),
-                        labels=c("EXPECTED ABUNDANCE", "MIXTURE ABUNDANCE"))+
+                        labels=c("EA", "SmDgA"))+
       labs(fill = "")
   }) 
   
@@ -457,7 +590,7 @@ server <- function(input, output, session) {
       Sys.sleep(0.5)
     }
     
-    ### 2 - Upload customised training database
+    ### 2 - Upload customized training database
     custom.training <- input$uploadDB
     own.sourceDB<-read.csv(custom.training$datapath, header = input$header,sep = ";")
     
@@ -494,7 +627,7 @@ server <- function(input, output, session) {
       Sys.sleep(0.5)
     }
     
-    ##6 - Upload mixture/donor grassland composition
+    ##6 - Upload Seed mixture or donor grassland composition
     inFile.miscela <- input$uploadMiscela1
     composizione1<-read.csv(inFile.miscela$datapath, header = input$header,sep = ";")
     
@@ -506,7 +639,7 @@ server <- function(input, output, session) {
                 slope = input$pendenza1)
     
     descrittive1<-a1$DESCRIPTIVES
-    valori_predetti1<-a1$SURVEYED_AND_PREDICTED_ABUNDANCE
+    valori_predetti1<-a1$SPECIES_ABUNDANCES
     indici1<-a1$INDEXES
     
     plot1<-data.frame(a1$INDEXES)
@@ -520,7 +653,7 @@ server <- function(input, output, session) {
   ## Data preview  - Species codes (CEP names)
   output$codici.anteprima<-renderTable({button.generate()$cep.names})
   
-  ## Data preview  - Mixture/donor grassland composition
+  ## Data preview  - Seed mixture or donor grassland composition
   output$mixture_input1 <- renderTable({
     inFile <- input$uploadMiscela1
     
@@ -597,7 +730,7 @@ server <- function(input, output, session) {
             axis.title.y = element_text(color="black", size=16, angle=90),
             legend.position = "bottom")+
       scale_fill_manual(values = c( "darkgreen", "darkolivegreen1"),
-                        labels=c("EXPECTED ABUNDANCE", "MIXTURE ABUNDANCE"))+
+                        labels=c("EA", "SmDgA"))+
       labs(fill = "")
   }) 
 }
