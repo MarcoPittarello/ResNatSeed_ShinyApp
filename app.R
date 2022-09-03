@@ -76,10 +76,10 @@ ui <- fluidPage(
                           tabPanel("Tutorial 1: DEFAULT training database",
                                    fluidRow(
                                      h3(strong("Step 1")),
-                                     column(4,
-                                            img(src = "step1.PNG", height = 150, width = 350)
+                                     column(6,
+                                            img(src = "def_step1.PNG", height = 200, width = 500)
                                      ),
-                                     column(8,
+                                     column(5,
                                             p("Select the 'WebApp' panel",
                                               style="text-align:left;
                                             color:black;
@@ -93,7 +93,7 @@ ui <- fluidPage(
                                    fluidRow(
                                      h3(strong("Step 2")),
                                      column(6,
-                                            img(src = "step1.PNG", height = 150, width = 600)
+                                            img(src = "def_step2.PNG", height = 150, width = 500)
                                             ),
                                      column(5,
                                             p("Select 'Default (Piedmont, Italy)'"),
@@ -105,7 +105,10 @@ ui <- fluidPage(
                                    fluidRow(
                                      h3(strong("Step 3")),
                                      column(6,
-                                            img(src = "step1.PNG", height = 150, width = 600)
+                                            img(src = "def_step3.PNG", height = 150, width = 500),
+                                            tags$hr(),
+                                            br(),
+                                            img(src = "exampleDefCep.PNG", height = 300, width = 450)
                                      ),
                                      column(5,
                                             p("Click in the Download button to download a 'csv' file with the training database"),
@@ -117,69 +120,163 @@ ui <- fluidPage(
                                    fluidRow(
                                      h3(strong("Step 4")),
                                      column(6,
-                                            img(src = "step1.PNG", height = 150, width = 600)
+                                            img(src = "exampleSeedMix.PNG", height = 300, width = 500)
                                      ),
                                      column(5,
                                             p("In a excel sheet create the mixture or donor grassland composition database, which is characterized by two columns:"),
                                             p(strong("First column:"),"species code abbreviated in CEP names format"),
                                             p(strong("Second column:"),"abundance of each species. Abundance must be a number bounded between 0 and 100, which can be either a species relative abundance or a species cover (sensu Pittarello et al., 2016; Verdinelli et al., 2022"),
+                                            p("Save the file in 'csv' format, semicolon separated"),
                                             p("The total abundance of the seed mixture or donor grassland composition should not necessarily amount 100%.")
                                      )
                                    ),
                                    tags$hr(),
                                    br(),
-                          ),#end tabpanel
+                                   fluidRow(
+                                     h3(strong("Step 5")),
+                                     column(6,
+                                            img(src = "def_step5.PNG", height = 250, width = 500)
+                                     ),
+                                     column(5,
+                                            p("Upload the seed mixture or donor grassland composition in a 'csv' format")
+                                     )
+                                   ),
+                                   tags$hr(),
+                                   br(),
+                                   fluidRow(
+                                     h3(strong("Step 6")),
+                                     column(6,
+                                            img(src = "def_step6.PNG", height = 500, width = 450)
+                                     ),
+                                     column(5,
+                                            p("Set the topographical values of the restoration site and then press the RUN button")
+                                     )
+                                   ),
+                                   tags$hr(),
+                                   br()
+                                   ),#end tabpanel
                           tabPanel("Tutorial 2: CUSTOMIZED training database",
-                                   
-                          )#end tabpanel
+                                   fluidRow(
+                                     h3(strong("Step 1")),
+                                     column(6,
+                                            img(src = "def_step1.PNG", height = 200, width = 500)
+                                     ),
+                                     column(5,
+                                            p("Select the 'WebApp' panel",
+                                              style="text-align:left;
+                                            color:black;
+                                            background-color:white;
+                                            padding:15px;
+                                            border-radius:10px")
+                                     )#end column
+                                   ),#end fluid row
+                                   tags$hr(),
+                                   br(),
+                                   fluidRow(
+                                     h3(strong("Step 2")),
+                                     column(6,
+                                            img(src = "cus_step2.PNG", height = 150, width = 500)
+                                     ),
+                                     column(5,
+                                            p("Select 'Customized'"),
+                                            p("When this setting is the customized one, the training database that will be created refers to the vegetation surveys provided by the user")
+                                     )
+                                   ),
+                                   tags$hr(),
+                                   br(),
+                                   fluidRow(
+                                     h3(strong("Step 3")),
+                                     column(6,
+                                            img(src = "cus_step3.PNG", height = 250, width = 500)
+                                            ),
+                                     column(5,
+                                            p("Upload the database with vegetation and topographical variables structured as follow:"),
+                                            p(strong("1. "),"Rows of the dataframe are the surveys"),
+                                            p(strong("2. "),"The first column reports the survey codes"),
+                                            p(strong("3. "),"The second, third and fourth columns report the topographical variables, respectively:"),
+                                            p(strong("    3.1. "),"Elevation: expressed in meters above sea level (m a.s.l.)"),
+                                            p(strong("    3.2. "),"Slope: expressed in degrees (°)"),
+                                            p(strong("    3.3. "),"Aspect: expressed in degrees from North (°N)"),
+                                            p(strong("4. "),"From the fifth column onwards, the plant species names. Plant species names do not necessarily have to be coded, they can be left in full. Afterwards, abbreviation codes will be automatically created in CEP names format: an abbreviation of species names according to the Cornell Ecology Programs (CEP), which uses eight-letter abbreviations for species. The CEP names code will be used to formulate the seed mixture or donor grassland composition.")
+                                            )
+                                   ),
+                                   fluidRow(
+                                     column(12,
+                                            img(src = "ex_VegTopoVar.PNG", height = 500, width = 1100)
+                                     )
+                                   ),
+                                   tags$hr(),
+                                   br(),
+                                   fluidRow(
+                                     h3(strong("Step 4")),
+                                     column(6,
+                                            img(src = "cus_step4.PNG", height = 250, width = 500)
+                                     ),
+                                     column(5,
+                                            p("Set the following parameters to create the training database:"),
+                                            p(strong("species frequency: "), "this argument allows to set a threshold of minimum frequency of each species in the surveys. It is advisable to set values greater than or equal to 30 to allow appropriate statistical modeling."),
+                                            p(strong("minimum species abundance"),"this argument allows to set a threshold of minimum abundance (greater than) of each species in each survey.")
+                                            )
+                                   ),
+                                   fluidRow(
+                                     h3(strong("Step 5")),
+                                     column(6,
+                                            img(src = "cus_step5.PNG", height = 150, width = 500)                                     ),
+                                     column(5,
+                                            p("Click the Generate button to create a 'csv' file with the list of species suitable for modeling and their species codes (CEP names) to be used for the seed mixture or donor grassland composition")
+                                            )
+                                   ),
+                                   tags$hr(),
+                                   br(),
+                                   fluidRow(
+                                     h3(strong("Step 6")),
+                                     column(6,
+                                            img(src = "cus_step6.PNG", height = 150, width = 500)                                     ),
+                                     column(5,
+                                            p("Click the Download button to download the 'csv' file with the list of species suitable for modeling and their species codes (CEP names) to be used for the seed mixture or donor grassland composition")
+                                            )
+                                   ),
+                                   tags$hr(),
+                                   br(),
+                                   fluidRow(
+                                     h3(strong("Step 7")),
+                                     column(6,
+                                            img(src = "exampleSeedMix.PNG", height = 300, width = 500)
+                                     ),
+                                     column(5,
+                                            p("In a excel sheet create the mixture or donor grassland composition database, which is characterized by two columns:"),
+                                            p(strong("First column:"),"species code abbreviated in CEP names format"),
+                                            p(strong("Second column:"),"abundance of each species. Abundance must be a number bounded between 0 and 100, which can be either a species relative abundance or a species cover (sensu Pittarello et al., 2016; Verdinelli et al., 2022"),
+                                            p("Save the file in 'csv' format, semicolon separated"),
+                                            p("The total abundance of the seed mixture or donor grassland composition should not necessarily amount 100%.")
+                                     )
+                                   ),
+                                   tags$hr(),
+                                   br(),
+                                   fluidRow(
+                                     h3(strong("Step 8")),
+                                     column(6,
+                                            img(src = "cus_step8.PNG", height = 250, width = 500)
+                                     ),
+                                     column(5,
+                                            p("Upload the seed mixture or donor grassland composition in a 'csv' format")
+                                     )
+                                   ),
+                                   tags$hr(),
+                                   br(),
+                                   fluidRow(
+                                     h3(strong("Step 9")),
+                                     column(6,
+                                            img(src = "cus_step9.PNG", height = 500, width = 450)
+                                     ),
+                                     column(5,
+                                            p("Set the topographical values of the restoration site and then press the RUN button")
+                                     )
+                                   )
+                                   )#end tabpanel
                         )#end tabset panel
                       )#end fluid row
                       ),#end tabpanel
-             
-             # tabPanel("Instructions",
-             #          fluidRow(
-             #            h1(strong("Step 1")),
-             #            p("Due opzioni: default / custom"),
-             #            column(6,
-             #                   img(src = "step1.PNG", height = 150, width = 600)
-             #            ),
-             #            column(5,
-             #                   p("clicca li, guarda la, etc",
-             #                     style="text-align:center;
-             #                             color:black;
-             #                             background-color:chartreuse;
-             #                             padding:15px;
-             #                             border-radius:10px")
-             #            )
-             #          ),
-             #          tags$hr(),
-             #          br(),
-             #          fluidRow(
-             #            h1("Step 2"),
-             #            p("papapdspdspadpsadpsadpasdpasd"),
-             #            column(6,
-             #                   img(src = "step1.PNG", height = 150, width = 600)
-             #            ),
-             #            column(4,
-             #                   p("Due opzioni: default / custom")
-             #            )
-             #          ),
-             #          tags$hr(),
-             #          br(),
-             #          fluidRow(
-             #            h1("Step 3"),
-             #            p("papapdspdspadpsadpsadpasdpasd"),
-             #            column(6,
-             #                   img(src = "step1.PNG", height = 150, width = 600)
-             #            ),
-             #            column(4,
-             #                   p("Due opzioni: default / custom")
-             #            )
-             #          ),
-             #          tags$hr(),
-             #          br(),
-             # ),
-             # 
              
              # 3 - WEB APP ----           
              
@@ -221,7 +318,7 @@ ui <- fluidPage(
                                  ## question 1 = custom -------
                                  conditionalPanel(
                                    condition = "input.radio == 'custom'",
-                                   h4(strong("2 - Upload customized training database")),
+                                   h4(strong("2 - Upload a database with vegetation and topographical variables")),
                                    fileInput("uploadDB", "CSV File (semicolon separated)",
                                              accept = c(
                                                "text/csv",
