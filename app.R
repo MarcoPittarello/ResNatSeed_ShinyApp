@@ -45,7 +45,7 @@ ui <- fluidPage(
                         br(),
                         br(),
                         br(),
-                        p("ResNatSeed is......................."),
+                        p("ResNatSeed is an R package and a Shiny web app that compute the suitability of a certain seed mixture with a site where the seeds would be sown for restoration purposes in a degraded site."),
                         p("Information in the paper..........................."),
                         div("prova prova", style = "color:blue")
                       )
@@ -57,6 +57,7 @@ ui <- fluidPage(
                       fluidRow(
                         tabsetPanel(
                           type="tabs",
+                          ## glossary ----           
                           tabPanel("Glossary",
                                    h5(strong("restoration site:"),p("degraded site that needs to be restored through sowing")),
                                    h5(strong("donor grassland:"),p("grassland in which plant material is harvested (e.g. through brushing) to provide native seeds to restoration sites")),
@@ -68,11 +69,14 @@ ui <- fluidPage(
                                    h5(strong("Suitability Index (SI):"),p("suitability of a seed mixture or donor grassland to restore a site with specific topographic characteristics. It ranges between 0 and 1. When SI=0 the restoration site is totally beyond the optimal ecological ranges of all species of the seed mixture or donor grassland, which is therefore not appropriate for the site restoration. Conversely, when SI=1 the restoration site has the optimal ecological conditions for all species of the seed mixture or donor grassland, which is therefore perfectly appropriate for the site restoration.")),
                                    h5(strong("Reliability Index (RI):"),p("index of the reliability of the Suitability Index (SI). The RI ranges between 0 and 1. When RI is close to 0 it means that few to none species contribute to the computation of the SI, whereas when RI is close to 1 the SI is computed with most to all species. Therefore, the higher is the RI, the most reliable is the SI. Not all the species of the seed mixture and donor grassland composition may modeled as i) they can be missing from the training database or ii) the values of the topographic factors of the restoration site are beyond their ecological ranges (e.g. if the elevation of the restoration site is 250 m and a species as an elevation range bounded between 1000 and 3000 m, such a species cannot be modeled)"))
                                    ),
+                          ## how to use  ----           
                           tabPanel("How to use ResNatSeed",
                                    p("ResNatSeed can operate in two different ways depending on the source of the training database (i.e. the default or customized one):"),
-                                   p("The",strong("DEFAULT training database"),"is based on vegetation data collected in the Piedmont Region (North Western Italy). See the vignette",strong("TUTORIAL 1 - Default training database"),"for operational details."),
-                                   p("The",strong("CUSTOMIZED training database"),"is based on vegetation data collected in the Piedmont Region (North Western Italy). See the vignette",strong("TUTORIAL 2 - Customized training database"),"for operational details.")
+                                   p("The",strong("DEFAULT training database"),"is based on vegetation data collected in the Piedmont Region (North Western Italy). See the ",strong("TUTORIAL 1 - Default training database"),"for operational details."),
+                                   p("The",strong("CUSTOMIZED training database"),"is based on vegetation data collected in the Piedmont Region (North Western Italy). See the ",strong("TUTORIAL 2 - Customized training database"),"for operational details.")
                                    ),#end tabpanel
+                          
+                          ## Tutorial 1 ----           
                           tabPanel("Tutorial 1: DEFAULT training database",
                                    fluidRow(
                                      h3(strong("Step 1")),
@@ -124,7 +128,7 @@ ui <- fluidPage(
                                      ),
                                      column(5,
                                             p("In a excel sheet create the mixture or donor grassland composition database, which is characterized by two columns:"),
-                                            p(strong("First column:"),"species code abbreviated in CEP names format"),
+                                            p(strong("First column:"),"species code abbreviated in CEP names format, retrievable from the downloaded csv file"),
                                             p(strong("Second column:"),"abundance of each species. Abundance must be a number bounded between 0 and 100, which can be either a species relative abundance or a species cover (sensu Pittarello et al., 2016; Verdinelli et al., 2022"),
                                             p("Save the file in 'csv' format, semicolon separated"),
                                             p("The total abundance of the seed mixture or donor grassland composition should not necessarily amount 100%.")
@@ -155,6 +159,8 @@ ui <- fluidPage(
                                    tags$hr(),
                                    br()
                                    ),#end tabpanel
+                          
+                          ## Tutorial 2 ----           
                           tabPanel("Tutorial 2: CUSTOMIZED training database",
                                    fluidRow(
                                      h3(strong("Step 1")),
@@ -231,7 +237,11 @@ ui <- fluidPage(
                                    fluidRow(
                                      h3(strong("Step 6")),
                                      column(6,
-                                            img(src = "cus_step6.PNG", height = 150, width = 500)                                     ),
+                                            img(src = "cus_step6.PNG", height = 150, width = 500),
+                                            tags$hr(),
+                                            br(),
+                                            img(src = "exampleDefCep.PNG", height = 300, width = 450)
+                                     ),
                                      column(5,
                                             p("Click the Download button to download the 'csv' file with the list of species suitable for modeling and their species codes (CEP names) to be used for the seed mixture or donor grassland composition")
                                             )
@@ -245,7 +255,7 @@ ui <- fluidPage(
                                      ),
                                      column(5,
                                             p("In a excel sheet create the mixture or donor grassland composition database, which is characterized by two columns:"),
-                                            p(strong("First column:"),"species code abbreviated in CEP names format"),
+                                            p(strong("First column:"),"species code abbreviated in CEP names format, retrievable from the downloaded csv file"),
                                             p(strong("Second column:"),"abundance of each species. Abundance must be a number bounded between 0 and 100, which can be either a species relative abundance or a species cover (sensu Pittarello et al., 2016; Verdinelli et al., 2022"),
                                             p("Save the file in 'csv' format, semicolon separated"),
                                             p("The total abundance of the seed mixture or donor grassland composition should not necessarily amount 100%.")
