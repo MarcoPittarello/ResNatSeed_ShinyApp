@@ -115,8 +115,8 @@ ui <- fluidPage(
                                             img(src = "exampleDefCep.PNG", height = 300, width = 450)
                                      ),
                                      column(5,
-                                            p("Click in the Download button to download a 'csv' file with the training database"),
-                                            p("The species names follow the Flora Alpina nomenclature (Aeschimann et al.,2004) and they are associated with the 'cep.names' code.")
+                                            p("Click in the Download button to download a 'csv' file with the 258 species eligible to modeling"),
+                                            p("The database contains two colums: the species names following the Flora Alpina nomenclature (Aeschimann et al.,2004) and their abbrevation codes (CEP names) to use to create the seed mixture or donor grassland composition database")
                                      )
                                    ),
                                    tags$hr(),
