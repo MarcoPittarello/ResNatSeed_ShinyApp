@@ -31,14 +31,17 @@ ui <- fluidPage(
                         column(1,
                                img(src = "disafa.jpg", height = 70, width = 70)
                         ),#end column
-                        column(8,
+                        column(10,
                                h1(strong("Welcome to ResNatSeed Web app",
                                          style="text-align:center;
                                          color:black;
                                          background-color:lightgreen;
                                          padding:15px;
                                          border-radius:10px"))
-                        )
+                        ),
+                        column(1,
+                               img(src = "disafa.jpg", height = 70, width = 70)
+                        )#end column
                       ),#end fluidrow
                       fluidRow(
                         br(),
@@ -81,7 +84,7 @@ ui <- fluidPage(
                                    fluidRow(
                                      h3(strong("Step 1")),
                                      column(6,
-                                            img(src = "def_step1.PNG", height = 200, width = 500)
+                                            img(src = "def_step1.PNG", height = 100, width = 550)
                                      ),
                                      column(5,
                                             p("Select the 'WebApp' panel",
@@ -531,17 +534,52 @@ ui <- fluidPage(
              # 5 - CONTACTS ----           
              
              tabPanel("Contacts",
-                      h1("Lista contatti"),
-                      br(),
-                      a(href="https://www.unito.it/", "Unito.it",target="_blank",
-                        style="text-align:center;color:black"),
-                      br(),
-                      p("Marco Pittarello: ", a(href="mailto:marco.pittarello@unito.it","marco.pittarello@unito.it")),
-                      p("Davide Barberis: ", a(href="mailto:d.barberis@unito.it","d.barberis@unito.it")),
-                      br(),
-                      
-                      
-             )#tabpanel
+                      fluidRow(
+                        column(5,
+                               img(src = "pitta.jpg", height = 120, width = 110)
+                        ),
+                        column(5,
+                               img(src = "disafa.jpg", height = 120, width = 110)
+                        )
+                      ),
+                      fluidRow(
+                        column(5,
+                               h1("Marco Pittarello"),
+                               p("", a(href="mailto:marco.pittarello@unito.it","marco.pittarello@unito.it")),
+                               br(),
+                               p("Affiliation: ",a(href="https://www.veterinaria.unito.it/do/home.pl","Department of Veterinary Sciences, University of Torino, Largo Paolo Braccini 2 - Grugliasco (Torino)")),
+                               br(),
+                               p("Useful links:"),
+                               p(a(href="https://www.clmveterinaria.unito.it/persone/marco.pittarello","Personal Institutional Web-page",
+                                   target="_blank",
+                                   style="text-align:center;color:blue")),
+                               p(a(href="https://github.com/MarcoPittarello","Github",
+                                   target="_blank",
+                                   style="text-align:center;color:blue")),
+                               p(a(href="https://www.researchgate.net/profile/Marco-Pittarello","Researchgate",
+                                   target="_blank",
+                                   style="text-align:center;color:blue"))
+                               
+                        ),
+                        column(5,
+                               h1("Davide Barberis"),
+                               p("", a(href="mailto:d.barberis@unito.it","d.barberis@unito.it")),
+                               br(),
+                               p("Affiliation: ",a(href="https://www.disafa.unito.it/do/home.pl","Department of Agricultural, Forest and Food Sciences, University of Torino, Largo Paolo Braccini 2 - Grugliasco (Torino)")),
+                               br(),
+                               p("Useful links:"),
+                               p(a(href="https://www.disafa.unito.it/persone/d.barberis","Personal Institutional Web-page",
+                                   target="_blank",
+                                   style="text-align:center;color:blue")),
+                               p(a(href="https://github.com/davidebarberis","Github",
+                                   target="_blank",
+                                   style="text-align:center;color:blue")),
+                               p(a(href="https://www.researchgate.net/profile/Davide-Barberis","Researchgate",
+                                   target="_blank",
+                                   style="text-align:center;color:blue"))
+                        )
+                        )
+                      )#tabpanel
   )#nav page
 )
 
