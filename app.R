@@ -28,30 +28,39 @@ ui <- fluidPage(
              # 1 - HOME PAGE----           
              tabPanel(icon("home"),
                       fluidRow(
-                        column(1,
-                               img(src = "disafa.jpg", height = 70, width = 70)
+                        column(2,
+                               img(src = "seeds.jpg", height = 100, width = 100,style="display: block; margin-left: auto; margin-right: auto;")
                         ),#end column
-                        column(10,
-                               h1(strong("Welcome to ResNatSeed Web app",
+                        column(8,
+                               h2(strong("Welcome to ResNatSeed Web app",
                                          style="text-align:center;
                                          color:black;
                                          background-color:lightgreen;
                                          padding:15px;
                                          border-radius:10px"))
                         ),
-                        column(1,
-                               img(src = "disafa.jpg", height = 70, width = 70)
+                        column(2,
+                               img(src = "seeds.jpg", height = 100, width = 100,style="display: block; margin-left: auto; margin-right: auto;")
                         )#end column
                       ),#end fluidrow
                       fluidRow(
                         br(),
                         br(),
-                        br(),
-                        br(),
-                        p("ResNatSeed is an R package and a Shiny web app that compute the suitability of a certain seed mixture with a site where the seeds would be sown for restoration purposes in a degraded site."),
-                        p("Information in the paper..........................."),
-                        div("prova prova", style = "color:blue")
-                      )
+                        p("The United Nations Decade on Ecosystem Restoration is highlighting the importance of restoring ecosystems and trying to overcome the actual limitations to the process."),
+                        p("ResNatSeed is an R package born to overcome the problem of subjectivity during the assessment of suitability between native seeds and a site that must be restored.
+")),
+                      fluidRow(
+                        column(7,
+                               p("The package allows to assess the restoration potential of native seeds in a restoration site using topographic factors only. The input data are the composition of the seed mixture or the donor grassland and the elevation, slope, and aspect of the restoration site. Such topographic factors are easily retrievable both in the field and through any Geographic Information System (GIS) software."),
+                               p("The suitability of the species mixture for restoring a site is based on the modeling of a large database of vegetation surveys, characterized by botanical composition associated to the abovementioned topographic factors. Such a database can be either a default one, which is related to the Piedmont Region (NW Italy), or provided by the user to allow the usage of ResNatSeed for any geographical area."),
+                               p("The restoration potential is expressed with two synthetic indexes (named Suitability Index and Reliability Index), readily interpretable as well as they range between 0 (low suitability and realiability) and 1 (high suitability and realiability).")
+                               ),
+                        column(1,
+                               img(src = "DeGrandis3.jpg", height = 300, width = 400)
+                               ),#end column
+                        ),#end fluid row
+                      p("This Shiny web app, is meant to provide an easy to use interface that could allow the use of ResNatSeed also to professionals and non-experts of the software R.
+")
                       
              ),#end tabpanel
              
@@ -82,9 +91,9 @@ ui <- fluidPage(
                           ## Tutorial 1 ----           
                           tabPanel("Tutorial 1: DEFAULT training database",
                                    fluidRow(
-                                     h3(strong("Step 1")),
-                                     column(6,
-                                            img(src = "def_step1.PNG", height = 100, width = 550)
+                                     h3(strong("Step 1"),style="color:red"),
+                                     column(5,
+                                            img(src = "def_step1.PNG", height = 70, width = 350)
                                      ),
                                      column(5,
                                             p("Select the 'WebApp' panel",
@@ -96,79 +105,72 @@ ui <- fluidPage(
                                      )#end column
                                      ),#end fluid row
                                    tags$hr(),
-                                   br(),
                                    fluidRow(
-                                     h3(strong("Step 2")),
-                                     column(6,
-                                            img(src = "def_step2.PNG", height = 150, width = 500)
+                                     h3(strong("Step 2"),style="color:red"),
+                                     column(5,
+                                            img(src = "def_step2.PNG", height = 100, width = 350)
                                             ),
                                      column(5,
                                             p("Select 'Default (Piedmont, Italy)'"),
-                                            p("When this setting is the default one, the training database refers to the vegetation surveys from the Piedmont Region - North-Western Italy, which includes 258 plant species eligible to modeling")
+                                            p("When this setting is the default one, the training database refers to the vegetation surveys from the Piedmont Region - North-Western Italy, which includes 248 plant species eligible to modeling")
                                             )
                                      ),
                                    tags$hr(),
-                                   br(),
                                    fluidRow(
-                                     h3(strong("Step 3")),
-                                     column(6,
-                                            img(src = "def_step3.PNG", height = 150, width = 500),
+                                     h3(strong("Step 3"),style="color:red"),
+                                     column(5,
+                                            img(src = "def_step3.PNG", height = 100, width = 350),
                                             tags$hr(),
                                             br(),
-                                            img(src = "exampleDefCep.PNG", height = 300, width = 450)
+                                            img(src = "exampleDefCep.PNG", height = 233, width = 350)
                                      ),
                                      column(5,
-                                            p("Click in the Download button to download a 'csv' file with the 258 species eligible to modeling"),
+                                            p("Click the Download button to download a 'csv' file with the 248 species eligible to modeling"),
                                             p("The database contains two colums: the species names following the Flora Alpina nomenclature (Aeschimann et al.,2004) and their abbrevation codes (CEP names) to use to create the seed mixture or donor grassland composition database")
                                      )
                                    ),
                                    tags$hr(),
-                                   br(),
                                    fluidRow(
-                                     h3(strong("Step 4")),
-                                     column(6,
-                                            img(src = "exampleSeedMix.PNG", height = 300, width = 500)
+                                     h3(strong("Step 4"),style="color:red"),
+                                     column(5,
+                                            img(src = "exampleSeedMix.PNG", height = 210, width = 350)
                                      ),
                                      column(5,
                                             p("In a excel sheet create the mixture or donor grassland composition database, which is characterized by two columns:"),
                                             p(strong("First column:"),"species code abbreviated in CEP names format, retrievable from the downloaded csv file"),
                                             p(strong("Second column:"),"abundance of each species. Abundance must be a number bounded between 0 and 100, which can be either a species relative abundance or a species cover (sensu Pittarello et al., 2016; Verdinelli et al., 2022"),
                                             p("Save the file in 'csv' format, semicolon separated"),
-                                            p("The total abundance of the seed mixture or donor grassland composition should not necessarily amount 100%.")
+                                            p("The total abundance of the seed mixture or donor grassland composition should not necessarily amount to 100%.")
                                      )
                                    ),
                                    tags$hr(),
-                                   br(),
                                    fluidRow(
-                                     h3(strong("Step 5")),
-                                     column(6,
-                                            img(src = "def_step5.PNG", height = 250, width = 500)
+                                     h3(strong("Step 5"),style="color:red"),
+                                     column(5,
+                                            img(src = "def_step5.PNG", height = 175, width = 350)
                                      ),
                                      column(5,
                                             p("Upload the seed mixture or donor grassland composition in a 'csv' format")
                                      )
                                    ),
                                    tags$hr(),
-                                   br(),
                                    fluidRow(
-                                     h3(strong("Step 6")),
-                                     column(6,
-                                            img(src = "def_step6.PNG", height = 500, width = 450)
+                                     h3(strong("Step 6"),style="color:red"),
+                                     column(5,
+                                            img(src = "def_step6.PNG", height = 400, width = 350)
                                      ),
                                      column(5,
                                             p("Set the topographical values of the restoration site and then press the RUN button")
                                      )
-                                   ),
-                                   tags$hr(),
-                                   br()
+                                   )
                                    ),#end tabpanel
                           
                           ## Tutorial 2 ----           
                           tabPanel("Tutorial 2: CUSTOMIZED training database",
                                    fluidRow(
-                                     h3(strong("Step 1")),
-                                     column(6,
-                                            img(src = "def_step1.PNG", height = 200, width = 500)
+                                     h3(strong("Step 1"),style="color:red"),
+                                     column(5,
+                                            img(src = "def_step1.PNG", height = 80, width = 350)
                                      ),
                                      column(5,
                                             p("Select the 'WebApp' panel",
@@ -180,11 +182,10 @@ ui <- fluidPage(
                                      )#end column
                                    ),#end fluid row
                                    tags$hr(),
-                                   br(),
                                    fluidRow(
-                                     h3(strong("Step 2")),
-                                     column(6,
-                                            img(src = "cus_step2.PNG", height = 150, width = 500)
+                                     h3(strong("Step 2"),style="color:red"),
+                                     column(5,
+                                            img(src = "cus_step2.PNG", height = 105, width = 350)
                                      ),
                                      column(5,
                                             p("Select 'Customized'"),
@@ -192,11 +193,10 @@ ui <- fluidPage(
                                      )
                                    ),
                                    tags$hr(),
-                                   br(),
                                    fluidRow(
-                                     h3(strong("Step 3")),
-                                     column(6,
-                                            img(src = "cus_step3.PNG", height = 250, width = 500)
+                                     h3(strong("Step 3"),style="color:red"),
+                                     column(5,
+                                            img(src = "cus_step3.PNG", height = 175, width = 350)
                                             ),
                                      column(5,
                                             p("Upload the database with vegetation and topographical variables structured as follow:"),
@@ -215,11 +215,10 @@ ui <- fluidPage(
                                      )
                                    ),
                                    tags$hr(),
-                                   br(),
                                    fluidRow(
-                                     h3(strong("Step 4")),
-                                     column(6,
-                                            img(src = "cus_step4.PNG", height = 250, width = 500)
+                                     h3(strong("Step 4"),style="color:red"),
+                                     column(5,
+                                            img(src = "cus_step4.PNG", height = 175, width = 350)
                                      ),
                                      column(5,
                                             p("Set the following parameters to create the training database:"),
@@ -227,60 +226,57 @@ ui <- fluidPage(
                                             p(strong("minimum species abundance"),"this argument allows to set a threshold of minimum abundance (greater than) of each species in each survey.")
                                             )
                                    ),
+                                   tags$hr(),
                                    fluidRow(
-                                     h3(strong("Step 5")),
-                                     column(6,
-                                            img(src = "cus_step5.PNG", height = 150, width = 500)                                     ),
+                                     h3(strong("Step 5"),style="color:red"),
+                                     column(5,
+                                            img(src = "cus_step5.PNG", height = 105, width = 350)                                     ),
                                      column(5,
                                             p("Click the Generate button to create a 'csv' file with the list of species suitable for modeling and their species codes (CEP names) to be used for the seed mixture or donor grassland composition")
                                             )
                                    ),
                                    tags$hr(),
-                                   br(),
                                    fluidRow(
-                                     h3(strong("Step 6")),
-                                     column(6,
-                                            img(src = "cus_step6.PNG", height = 150, width = 500),
+                                     h3(strong("Step 6"),style="color:red"),
+                                     column(5,
+                                            img(src = "cus_step6.PNG", height = 105, width = 350),
                                             tags$hr(),
                                             br(),
-                                            img(src = "exampleDefCep.PNG", height = 300, width = 450)
+                                            img(src = "exampleDefCep.PNG", height = 200, width = 350)
                                      ),
                                      column(5,
                                             p("Click the Download button to download the 'csv' file with the list of species suitable for modeling and their species codes (CEP names) to be used for the seed mixture or donor grassland composition")
                                             )
                                    ),
                                    tags$hr(),
-                                   br(),
                                    fluidRow(
-                                     h3(strong("Step 7")),
-                                     column(6,
-                                            img(src = "exampleSeedMix.PNG", height = 300, width = 500)
+                                     h3(strong("Step 7"),style="color:red"),
+                                     column(5,
+                                            img(src = "exampleSeedMix.PNG", height = 210, width = 350)
                                      ),
                                      column(5,
                                             p("In a excel sheet create the mixture or donor grassland composition database, which is characterized by two columns:"),
                                             p(strong("First column:"),"species code abbreviated in CEP names format, retrievable from the downloaded csv file"),
                                             p(strong("Second column:"),"abundance of each species. Abundance must be a number bounded between 0 and 100, which can be either a species relative abundance or a species cover (sensu Pittarello et al., 2016; Verdinelli et al., 2022"),
                                             p("Save the file in 'csv' format, semicolon separated"),
-                                            p("The total abundance of the seed mixture or donor grassland composition should not necessarily amount 100%.")
+                                            p("The total abundance of the seed mixture or donor grassland composition should not necessarily amount to 100%.")
                                      )
                                    ),
                                    tags$hr(),
-                                   br(),
                                    fluidRow(
-                                     h3(strong("Step 8")),
-                                     column(6,
-                                            img(src = "cus_step8.PNG", height = 250, width = 500)
+                                     h3(strong("Step 8"),style="color:red"),
+                                     column(5,
+                                            img(src = "cus_step8.PNG", height = 175, width = 350)
                                      ),
                                      column(5,
                                             p("Upload the seed mixture or donor grassland composition in a 'csv' format")
                                      )
                                    ),
                                    tags$hr(),
-                                   br(),
                                    fluidRow(
-                                     h3(strong("Step 9")),
-                                     column(6,
-                                            img(src = "cus_step9.PNG", height = 500, width = 450)
+                                     h3(strong("Step 9"),style="color:red"),
+                                     column(5,
+                                            img(src = "cus_step9.PNG", height = 400, width = 350)
                                      ),
                                      column(5,
                                             p("Set the topographical values of the restoration site and then press the RUN button")
@@ -534,17 +530,19 @@ ui <- fluidPage(
              # 5 - CONTACTS ----           
              
              tabPanel("Contacts",
+                      # fluidRow(
+                      #   column(5,
+                      #          img(src = "pitta.jpg", height = 120, width = 110)
+                      #   ),
+                      #   column(5,
+                      #          img(src = "disafa.jpg", height = 120, width = 110)
+                      #   )
+                      # ),
+                      fluidRow(
+                        h1(strong("Web app and R package developers"),style="text-align:center;color:red")),
                       fluidRow(
                         column(5,
-                               img(src = "pitta.jpg", height = 120, width = 110)
-                        ),
-                        column(5,
-                               img(src = "disafa.jpg", height = 120, width = 110)
-                        )
-                      ),
-                      fluidRow(
-                        column(5,
-                               h1("Marco Pittarello"),
+                               h2("Marco Pittarello"),
                                p("", a(href="mailto:marco.pittarello@unito.it","marco.pittarello@unito.it")),
                                br(),
                                p("Affiliation: ",a(href="https://www.veterinaria.unito.it/do/home.pl","Department of Veterinary Sciences, University of Torino, Largo Paolo Braccini 2 - Grugliasco (Torino)")),
@@ -562,7 +560,7 @@ ui <- fluidPage(
                                
                         ),
                         column(5,
-                               h1("Davide Barberis"),
+                               h2("Davide Barberis"),
                                p("", a(href="mailto:d.barberis@unito.it","d.barberis@unito.it")),
                                br(),
                                p("Affiliation: ",a(href="https://www.disafa.unito.it/do/home.pl","Department of Agricultural, Forest and Food Sciences, University of Torino, Largo Paolo Braccini 2 - Grugliasco (Torino)")),
@@ -578,7 +576,38 @@ ui <- fluidPage(
                                    target="_blank",
                                    style="text-align:center;color:blue"))
                         )
-                        )
+                        ),
+                      tags$hr(),
+                      fluidRow(
+                        h1(strong("Coordinators"),style="text-align:center;color:red")
+                      ),
+                      fluidRow(
+                        column(5,
+                               h2("Michele Lonati"),
+                               p("", a(href="mailto:michele.lonati@unito.it","michele.lonati@unito.it")),
+                               
+                               br(),
+                               p("Affiliation: ",a(href="https://www.disafa.unito.it/do/home.pl","Department of Agricultural, Forest and Food Sciences, University of Torino, Largo Paolo Braccini 2 - Grugliasco (Torino)")),
+                               br(),
+                               p("Useful links:"),
+                               p(a(href="https://www.disafa.unito.it/persone/michele.lonati","Personal Institutional Web-page",
+                                   target="_blank",
+                                   style="text-align:center;color:blue")
+                               )
+                               ),
+                        column(5,
+                             h2("Giampiero Lombardi"),
+                             p("", a(href="mailto:giampiero.lombardi@unito.it","giampiero.lombardi@unito.it")),
+                             br(),
+                             p("Affiliation: ",a(href="https://www.disafa.unito.it/do/home.pl","Department of Agricultural, Forest and Food Sciences, University of Torino, Largo Paolo Braccini 2 - Grugliasco (Torino)")),
+                             br(),
+                             p("Useful links:"),
+                             p(a(href="https://www.disafa.unito.it/persone/giampiero.lombardi","Personal Institutional Web-page",
+                                 target="_blank",
+                                 style="text-align:center;color:blue")
+                      )
+                      )
+                      )
                       )#tabpanel
   )#nav page
 )
