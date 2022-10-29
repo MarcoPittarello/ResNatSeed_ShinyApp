@@ -12,8 +12,8 @@ library(shinythemes)
 library(vegan)
 library(tidyverse)
 
-library(devtools)
-install_github("MarcoPittarello/ResNatSeed")
+# library(devtools)
+# install_github("MarcoPittarello/ResNatSeed")
 
 library(ResNatSeed)
 
