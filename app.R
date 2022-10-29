@@ -29,37 +29,37 @@ ui <- fluidPage(
              tabPanel(icon("home"),
                       fluidRow(
                         column(2,
-                               img(src = "seeds.jpg", height = 100, width = 100,style="display: block; margin-left: auto; margin-right: auto;")
+                               img(src = "seeds.jpg", height = 150, width = 150,style="display: block; margin-left: auto; margin-right: auto;")
                         ),#end column
                         column(8,
-                               h2(strong("Welcome to ResNatSeed Web app",
-                                         style="text-align:center;
-                                         color:black;
+                               h1(strong("Welcome to ResNatSeed Web app",
+                                         style="color:black;
                                          background-color:lightgreen;
-                                         padding:15px;
-                                         border-radius:10px"))
+                                         padding:10px;
+                                         border-radius:4px"),
+                                  align = "center")
                         ),
                         column(2,
-                               img(src = "seeds.jpg", height = 100, width = 100,style="display: block; margin-left: auto; margin-right: auto;")
+                               img(src = "seeds.jpg", height = 150, width = 150,style="display: block; margin-left: auto; margin-right: auto;")
                         )#end column
                       ),#end fluidrow
                       fluidRow(
                         br(),
                         br(),
                         p("The United Nations Decade on Ecosystem Restoration is highlighting the importance of restoring ecosystems and trying to overcome the actual limitations to the process."),
-                        p("ResNatSeed is an R package born to overcome the problem of subjectivity during the assessment of suitability between native seeds and a site that must be restored.
+                        p(strong("ResNatSeed"), "is an R package born to overcome the problem of subjectivity during the assessment of suitability between native seeds and a site that must be restored.
 ")),
                       fluidRow(
                         column(7,
-                               p("The package allows to assess the restoration potential of native seeds in a restoration site using topographic factors only. The input data are the composition of the seed mixture or the donor grassland and the elevation, slope, and aspect of the restoration site. Such topographic factors are easily retrievable both in the field and through any Geographic Information System (GIS) software."),
+                               p("The package", strong("allows to assess the restoration potential of native seeds in a restoration site using topographic factors only. "), "The input data are the composition of the seed mixture or the donor grassland and the ",strong("elevation, slope, and aspect")," of the restoration site. Such topographic factors are easily retrievable both in the field and through any Geographic Information System (GIS) software."),
                                p("The suitability of the species mixture for restoring a site is based on the modeling of a large database of vegetation surveys, characterized by botanical composition associated to the abovementioned topographic factors. Such a database can be either a default one, which is related to the Piedmont Region (NW Italy), or provided by the user to allow the usage of ResNatSeed for any geographical area."),
-                               p("The restoration potential is expressed with two synthetic indexes (named Suitability Index and Reliability Index), readily interpretable as well as they range between 0 (low suitability and realiability) and 1 (high suitability and realiability).")
+                               p(strong("The restoration potential is expressed with two synthetic indexes")," (named ",strong("Suitability Index and Reliability Index"),"), readily interpretable as well as they range between 0 (low suitability and realiability) and 1 (high suitability and realiability).")
                                ),
                         column(1,
                                img(src = "DeGrandis3.jpg", height = 300, width = 400)
                                ),#end column
                         ),#end fluid row
-                      p("This Shiny web app, is meant to provide an easy to use interface that could allow the use of ResNatSeed also to professionals and non-experts of the software R.
+                      p("This ",strong("Shiny web app"),", is meant to provide an easy to use interface that could allow the use of ResNatSeed also to professionals and non-experts of the software R.
 ")
                       
              ),#end tabpanel
@@ -85,7 +85,7 @@ ui <- fluidPage(
                           tabPanel("How to use ResNatSeed",
                                    p("ResNatSeed can operate in two different ways depending on the source of the training database (i.e. the default or customized one):"),
                                    p("The",strong("DEFAULT training database"),"is based on vegetation data collected in the Piedmont Region (North Western Italy). See the ",strong("TUTORIAL 1 - Default training database"),"for operational details."),
-                                   p("The",strong("CUSTOMIZED training database"),"is based on vegetation data collected in the Piedmont Region (North Western Italy). See the ",strong("TUTORIAL 2 - Customized training database"),"for operational details.")
+                                   p("The",strong("CUSTOMIZED training database"),"is based on vegetation data provided by the user. See the ",strong("TUTORIAL 2 - Customized training database"),"for operational details.")
                                    ),#end tabpanel
                           
                           ## Tutorial 1 ----           
