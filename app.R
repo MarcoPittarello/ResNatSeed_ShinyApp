@@ -21,7 +21,7 @@ library(ResNatSeed)
 
 # ^^^^^ UI - shiny app ------------------------------------------
 ui <- fluidPage(
-  titlePanel("ResNatSeed: A tool for the assessment of the REStoration potential of NATive SEEDs based on topographic factors"),
+  titlePanel("ResNatSeed: an R package and Shiny web app to predict the REStoration potential of NATive SEEDs using topographic factors"),
   theme = shinytheme("cosmo"),
   navbarPage("ResNatSeed",
              
@@ -84,7 +84,7 @@ ui <- fluidPage(
                           ## how to use  ----           
                           tabPanel("How to use ResNatSeed",
                                    p("ResNatSeed can operate in two different ways depending on the source of the training database (i.e. the default or customized one):"),
-                                   p("The",strong("DEFAULT training database"),"is based on vegetation data collected in the Piedmont Region (North Western Italy). See the ",strong("TUTORIAL 1 - Default training database"),"for operational details."),
+                                   p("The",strong("DEFAULT training database"),"is based on vegetation data collected in the Piedmont Region (North-western Italy). See the ",strong("TUTORIAL 1 - Default training database"),"for operational details."),
                                    p("The",strong("CUSTOMIZED training database"),"is based on vegetation data provided by the user. See the ",strong("TUTORIAL 2 - Customized training database"),"for operational details.")
                                    ),#end tabpanel
                           
@@ -138,7 +138,7 @@ ui <- fluidPage(
                                      column(5,
                                             p("In a excel sheet create the mixture or donor grassland composition database, which is characterized by two columns:"),
                                             p(strong("First column:"),"species code abbreviated in CEP names format, retrievable from the downloaded csv file"),
-                                            p(strong("Second column:"),"abundance of each species. Abundance must be a number bounded between 0 and 100, which can be either a species relative abundance or a species cover (sensu Pittarello et al., 2016; Verdinelli et al., 2022"),
+                                            p(strong("Second column:"),"abundance of each species. Abundance must be a number bounded between 0 and 100, which can be either a species relative abundance or a species cover (sensu Pittarello et al., 2016; Verdinelli et al., 2022)"),
                                             p("Save the file in 'csv' format, semicolon separated"),
                                             p("The total abundance of the seed mixture or donor grassland composition should not necessarily amount to 100%.")
                                      )
