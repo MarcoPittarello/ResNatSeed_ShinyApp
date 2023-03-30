@@ -539,7 +539,7 @@ ui <- fluidPage(
                       #   )
                       # ),
                       fluidRow(
-                        h1(strong("Web app and R package developers"),style="text-align:center;color:red")),
+                        h1(strong("Web app and R package developers"),style="text-align:left;color:red")),
                       fluidRow(
                         column(5,
                                h2("Marco Pittarello"),
@@ -579,7 +579,7 @@ ui <- fluidPage(
                         ),
                       tags$hr(),
                       fluidRow(
-                        h1(strong("Coordinators"),style="text-align:center;color:red")
+                        h1(strong("Coordinators"),style="text-align:left;color:red")
                       ),
                       fluidRow(
                         column(5,

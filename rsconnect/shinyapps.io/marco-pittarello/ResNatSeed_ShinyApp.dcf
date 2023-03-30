@@ -5,9 +5,9 @@ account: marco-pittarello
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 5927573
-bundleId: 6454758
+bundleId: 6667085
 url: https://marco-pittarello.shinyapps.io/ResNatSeed_ShinyApp/
-when: 1667075569.42103
-lastSyncTime: 1667075569.42106
+when: 1671784726.70757
+lastSyncTime: 1671784726.70759
 asMultiple: FALSE
 asStatic: FALSE
